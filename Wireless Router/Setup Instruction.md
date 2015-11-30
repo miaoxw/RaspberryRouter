@@ -12,7 +12,7 @@ We need to assign a static IP address for the wireless NIC card.
 * Add the following new contents:
 
 		iface wlan0 inet static
-		address 10.0.16.1
+		address 192.168.10.1
 		netmask 255.255.255.0
 	The assignment of IP address the subnet mask is at your wish. For normal use, a C-type IP range(192.168.0.0/24-192.168.255.0/24) can fulfill our needs.
 * Reastart the networking service to verify that IP is properly assigned.
@@ -31,7 +31,7 @@ We need to assign a static IP address for the wireless NIC card.
 	* Create `/etc/hostapd/hostapd.conf` and add the following contents:
 
 			#Function wlan0 as AP
-			interface=wlan0suc
+			interface=wlan0
 			#Identify the driver
 			driver=nl80211
 			#Disable the SSID broadcast
@@ -59,17 +59,17 @@ We need to assign a static IP address for the wireless NIC card.
 * Edit the configuration file `/etc/dhcp/dhcpd.conf`. If necessary, make a backup file before modifying it.  
 All properties have clear names and functions. So, I won't explain them.
 
-default-lease-time 43200;
-max-lease-time 86400;
-
-subnet 10.0.16.0 netmask 255.255.255.0 {
-range 10.0.16.1 10.0.16.254;
-option routers 10.0.16.1;
-option broadcast-address 10.0.16.255;
-option domain-name-servers 61.177.7.1 223.5.5.5;
-default-lease-time 43200;
-max-lease-time 86400;
-}
+		default-lease-time 43200;
+		max-lease-time 86400;
+		
+		subnet 10.0.16.0 netmask 255.255.255.0 {
+		range 10.0.16.1 10.0.16.254;
+		option routers 10.0.16.1;
+		option broadcast-address 10.0.16.255;
+		option domain-name-servers 61.177.7.1 223.5.5.5;
+		default-lease-time 43200;
+		max-lease-time 86400;
+		}
 
 ##Settings of iptables
 * To enable wireless clients to have access to the Internet, we still need to configure something about packet forwarding.
