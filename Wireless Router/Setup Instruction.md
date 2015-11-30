@@ -1,11 +1,11 @@
 #Setup Instruction
-When setting up a wireless router here, we connect the Internet access on `eth0`, and plan to use `wlan0` as the WiFi transmitter. If you want to receive WiFi signals with another NIC, just modify the configuration file a little.
+When setting up a wireless router here, we assume that the Internet access is on `eth0`, and plan to use `wlan0` as the WiFi transmitter. If you want to receive WiFi signals with another NIC, just modify the configuration file a little.
 
 ##Get Proper Driver for NIC
 I have a high-power NIC card chipped with RaLink 3070. It is supportted by Raspbian itself, so the step for finding the driver can be skipped. If you get an unsupported NIC card, maybe compiling the driver by yourself is necessary. Good luck.
 
 ##Change NIC settings
-We need to assign a static IP address for the wireless NIC card.
+We need to assign a static IP address for the wireless NIC device.
 
 * Open `/etc/network/interfaces` with root authorization.
 * Comment all about `wlan0` with `#`.
@@ -19,7 +19,7 @@ We need to assign a static IP address for the wireless NIC card.
 
 ##Install necessary packages
 ###hostapd
-*It seems that hostapd only supports 802.11a/b/g mode, how to make it support 802.11n? This is to be discovered...*
+*It seems that hostapd only supports IEEE 802.11a/b/g mode, how to make our hand-made wireless routers support 802.11n? This is to be discovered...*
 
 * Run the following command to install `hostapd`:
 
@@ -56,7 +56,7 @@ We need to assign a static IP address for the wireless NIC card.
 * Run the following command to install DHCP server for Raspberry Pi:
 
 		sudo apt-get install isc-dhcp-server
-* Edit the configuration file `/etc/dhcp/dhcpd.conf`. If necessary, make a backup file before modifying it.  
+* Edit the configuration file `/etc/dhcp/dhcpd.conf`. If necessary, make a backup before modifying it.  
 All properties have clear names and functions. So, I won't explain them.
 
 		default-lease-time 43200;
@@ -103,4 +103,4 @@ This is where `chkconfig` works. Run the following commands to add `hostapd` and
 	sudo chkconfig --add hostapd
 	sudo chkconfig --add isc-dhcp-derver
 
-If necessary, you may define in which levels these services start up.
+If necessary, you may define in which levels these services start up, with extra options like `--level 3,4,5`.
