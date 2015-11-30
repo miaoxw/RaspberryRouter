@@ -16,6 +16,10 @@ I reject the proposal that we should buy a new router. Instead, I want to build 
 
 OpenWRT is a simple solution to turning Raspberry Pi to a wireless router, but that is not my purpose. If we install OpenWRT, VPN server can't be built on the Raspberry Pi at the same time. So, the wireless router still needs to be set up on a more usual Linux distribution, for example, Raspbian.
 ##Memo
+###2015-11-30
+* My high-power NIC is a bit too large for my crowded desktop, so I substituted it with a mini-sized one. Luckily, it also works without any additional process with its driver.
+* 54Mbps is a little sad to me. Making my router support IEEE 802.11n is in the To-do list now.
+
 ###2015-11-25
 * Orders have been made tonight. When everything is ready, we can set about trying.
 * I have had a wireless NIC, and luckily, it is chipped with Ralink 3070. Therefore, I don't need to pay attention to its driver any more.  
