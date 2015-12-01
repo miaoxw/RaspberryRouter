@@ -73,7 +73,7 @@ The following steps assume that the tgz file is located at `/` on Raspberry Pi.
 		sudo -s
 * Extract the tgz file:
 
-		tar xzvf /home/pi/phddns_raspberry.tgz
+		tar xzvf /phddns_raspberry.tgz
 * Enter directory `phddns2` and execute `./oraynewph start`.  
 If we see `Oraynewph start success !`, installation is finished.
 
