@@ -7,6 +7,12 @@ Acessing electronical databases bought by the Library of Nanjing University is q
 As is known to all, the network in our labs is supervised by Software Institute itself. It is obvious that the library does not offer enough permission for our institute's export IP address. However, we can play some tricks on the network as if we were searching the database in our dormitory when seated in the labs located in Fei Yiming Building.
 
 In my plan, this function will work with the help of **a DDNS service**. What we need to do is **set up a VPN server** on Rasperberry Pi. Out of convenience, the VPN server had better support both PPTP and L2TP protocol.
+###Proxy Server Located in Campus Network
+I faced a HUGE problem when setting up VPN server with DDNS. So, I turned to a simpler way to solve it.
+
+With a HTTP proxy, all our HTTP request are forwarded by Raspberry Pi. Additionally, since Pi is located in dormitory, it is absolutely problem-free to have access to those databases.
+
+Proxies can be set up as a transparent one, but with the limit of free DDNS traffic, **a normal positive-direction proxy** is more suitable.
 ###Wireless Router in Dormitory
 One of my roommates left the dormitory once the final exam of Software Process and Management finished. Unfortunately, he went away with everything he could bring, **including the wireless router**...
 
@@ -19,6 +25,8 @@ OpenWRT is a simple solution to turning Raspberry Pi to a wireless router, but t
 ###2015-12-01
 * VPN doesn't work... Port mapping is a HUGE problem.
 * I wonder wether a transparent HTTP proxy works?
+* Yes, a proxy works.  
+*And the proxy solved the problem that CSS style sheets of GitHub can't be loaded in the laboratory.*
 
 ###2015-11-30
 * My high-power NIC is a bit too large for my crowded desktop, so I substituted it with a mini-sized one. Luckily, it also works without any additional process with its driver.
