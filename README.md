@@ -1,7 +1,7 @@
 #Raspberry Router
 This is a tool-set used to do something with our campus network in Nanjing University.
 ##Features
-###VPN Server Located in Campus Network
+###~~VPN Server Located in Campus Network~~(Abandoned)
 Acessing electronical databases bought by the Library of Nanjing University is quite a bonus for us to do some research on anything we are interested in. Theoretically, we can have free access to those databases anywhere on campus. However, when using computers assigned to us by the institute, we can't visit any database.
 
 As is known to all, the network in our labs is supervised by Software Institute itself. It is obvious that the library does not offer enough permission for our institute's export IP address. However, we can play some tricks on the network as if we were searching the database in our dormitory when seated in the labs located in Fei Yiming Building.
@@ -16,6 +16,10 @@ I reject the proposal that we should buy a new router. Instead, I want to build 
 
 OpenWRT is a simple solution to turning Raspberry Pi to a wireless router, but that is not my purpose. If we install OpenWRT, VPN server can't be built on the Raspberry Pi at the same time. So, the wireless router still needs to be set up on a more usual Linux distribution, for example, Raspbian.
 ##Memo
+###2015-12-01
+* VPN doesn't work... Port mapping is a HUGE problem.
+* I wonder wether a transparent HTTP proxy works?
+
 ###2015-11-30
 * My high-power NIC is a bit too large for my crowded desktop, so I substituted it with a mini-sized one. Luckily, it also works without any additional process with its driver.
 * 54Mbps is a little sad to me. Making my router support IEEE 802.11n is in the To-do list now.
