@@ -25,7 +25,7 @@ OpenWRT is a simple solution to turning Raspberry Pi to a wireless router, but t
 ###2015-12-06
 * The DIY router doesn't seem to have a wonderful stabilty...
 * If Raspberry Pi runs for over 48 hours, its throughput decreses dramatically. Once it is restarted, the performance goes back to the normal level.  
-*The result remains to be investigated.*
+*The reason remains to be investigated.*
 
 ###2015-12-01
 * VPN doesn't work... Port mapping is a HUGE problem.
