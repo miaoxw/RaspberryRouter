@@ -22,6 +22,11 @@ I reject the proposal that we should buy a new router. Instead, I want to build 
 
 OpenWRT is a simple solution to turning Raspberry Pi to a wireless router, but that is not my purpose. If we install OpenWRT, VPN server can't be built on the Raspberry Pi at the same time. So, the wireless router still needs to be set up on a more usual Linux distribution, for example, Raspbian.
 ##Memo
+###2016-03-17
+* Since last December, this Raspberry Router has always been working quite well.  
+But it is only has some basic functions. More and more functions and features are to be added to this tiny computing device.
+* To reveal the problem mentioned on Dec 6, 2015, something about auto rebooting is added.
+
 ###2015-12-11
 * It is usually found that when the Raspberry Pi was moved slightly, its power supply was cut. I looked into every aspect but no result was found.  
 *By accident, I changed a new power cable. Surprisingly, the power supply never stopped again.*
