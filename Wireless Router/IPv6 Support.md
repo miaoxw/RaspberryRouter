@@ -1,0 +1,53 @@
+#IPv6 Support
+The configuration referred in the setup instruction has only assured the connectivity of our Intranet and the campus network. However, This solution poses a huge decrease in terms of intergrity to our network application, especially **IPv6**. In this instruction, we will do something to get that precious feature back.
+
+##Solution summary
+It is common sense that in IPv6, the upstream server tend to allocate a range of IP addresses to its every client, instead of a single IP address. Additionally, IPs with ULA preffixes(`fc00::/8` and `fd00::/8`) are not used too widely, which makes the IP architecture in IPv6 *flatter*.  
+Simply, if we obtain a range of IP addresses, re-allocating that range of IP addresses can work out perfectly. But NIC seems to have done something different. As is shown below, my Raspberry Pi obtains such a 'range' of IP addresses:
+
+	inet6 addr: 2001:da8:1007:4000::8d8/128 Scope:Global
+
+This is a range of IP addresses with 128 bits of address preffixes. In other words, there is **only one** IP in the range. Of course we can't re-allocate that range any more.
+
+So, we can only **downgrade our Raspberry Pi to a switcher**. Don't worry, this downgrading is only limited in terms of IPv6.
+
+##Installing necessary packages
+To make a computer running Linux function as a switcher, bridge is quite an easy way. We need some packages to help us manage the bridge. Simply run the following commands:
+
+	sudo apt-get install birdge-utils
+	sudo apt-get install ebtables
+
+##Enable IPv6 forwarding in Linux kernel
+What we are going to do is quite similar to what we have done when configuring IPv4 routing.
+
+* Open file `/etc/sysctl.conf`.
+* Uncomment the following text in the file above:
+
+		net.ipv6.conf.all.forwarding=1
+* Run `sudo sysctl -p`, or simply reboot your Raspberry Router.
+
+##Start the bridge!
+###Build a bridge
+Linking the wireless port with the Ethernet port is enough. In this instruction, the bridge is named after `br-ipv6`. You can name it at your own wish.
+
+	sudo brctl addbr br-ipv6
+	#Attention!
+	sudo ifconfig br-ipv6 up	
+	brctl addif br-ipv6 eth0
+	brctl addif br-ipv6 wlan0
+
+I must point out that if the second command is typed in as `sudo ifup br-ipv6`, nothing works. After all, `ifup` and `ifdown` function only when the configuration files of the assigned network device exist.
+
+###Filtering all IPv4 packets
+By finishing the configuration above, every data packet can flow freely through the bridge, from one netowork to the other. This is obviously not what we expect. To make our network function normally, the bridge must drop all packets that have nothing to do with IPv6.  
+Similar to `iptables`, `ebtables` can help us manage rules about bridges other than network ports. Since the default action to the bridge is `ACCEPT`, it is enough only to add this one rule:
+
+	ebtables -t broute -A BROUTING -p ! ipv6 -j DROP
+
+Disconnect the Wireless connection and connect again. Your laptop must have obtained an IPv6 address starting with `2001:`, not the `fe80:` local address any more. Now, enjoy your IPv6 life!
+
+##Notes
+* Unfortunately, `ebtables` doesn't provide us some features like `iptables-save`. We must manually add that rule every time Raspberry Pi is powered up.  
+It seems that `ebtables` can export the current setting to a file so that we can import it later. If you want, make use of that feature.
+* The bridge we have just built is a temporary one. It also requires building again every time Raspberry Pi is poweres up.  
+*Of course we can make up a permanent bridge in Linux. However, a permanent bridge doesn't seem to work here.*
