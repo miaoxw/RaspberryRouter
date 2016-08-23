@@ -47,7 +47,7 @@ The way to write ACL is similar to that on a physical router.
 
 ###Something else
 	visible_hostname miaoxw.software.nju.edu.cn
-	cache_mgr mxw12@software.nju.edu.cn
+	cache_mgr mg1632004@software.nju.edu.cn
 
 These messages will appear on the error page if this proxy can't have access to the required HTTP request.
 

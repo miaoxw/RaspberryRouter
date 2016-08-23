@@ -24,7 +24,7 @@ We need to assign a static IP address for the wireless NIC device.
 * Run the following command to install `hostapd`:
 
 		sudo apt-get install hostapd
-* Edit the default configuration file of `hostapd`
+* Edit the default configuration file of `hostapd`, `/etc/default/hostapd`
 	* Find `#DAEMON_CONF=""` and modify it to:
 	
 			DAEMON_CONF="/etc/hostapd/hostapd.conf"
@@ -66,7 +66,7 @@ All properties have clear names and functions. So, I won't explain them.
 		range 10.0.16.1 10.0.16.254;
 		option routers 10.0.16.1;
 		option broadcast-address 10.0.16.255;
-		option domain-name-servers 61.177.7.1 223.5.5.5;
+		option domain-name-servers 61.177.7.1,223.5.5.5;
 		default-lease-time 43200;
 		max-lease-time 86400;
 		}
