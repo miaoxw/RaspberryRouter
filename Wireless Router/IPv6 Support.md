@@ -33,8 +33,8 @@ Linking the wireless port with the Ethernet port is enough. In this instruction,
 	sudo brctl addbr br-ipv6
 	#Attention!
 	sudo ifconfig br-ipv6 up	
-	brctl addif br-ipv6 eth0
-	brctl addif br-ipv6 wlan0
+	sudo brctl addif br-ipv6 eth0
+	sudo brctl addif br-ipv6 wlan0
 
 I must point out that if the second command is typed in as `sudo ifup br-ipv6`, nothing works. After all, `ifup` and `ifdown` function only when the configuration files of the assigned network device exist.
 
@@ -42,7 +42,7 @@ I must point out that if the second command is typed in as `sudo ifup br-ipv6`, 
 By finishing the configuration above, every data packet can flow freely through the bridge, from one netowork to the other. This is obviously not what we expect. To make our network function normally, the bridge must drop all packets that have nothing to do with IPv6.  
 Similar to `iptables`, `ebtables` can help us manage rules about bridges other than network ports. Since the default action to the bridge is `ACCEPT`, it is enough only to add this one rule:
 
-	ebtables -t broute -A BROUTING -p ! ipv6 -j DROP
+	sudo ebtables -t broute -A BROUTING -p ! ipv6 -j DROP
 
 Disconnect the Wireless connection and connect again. Your laptop must have obtained an IPv6 address starting with `2001:`, not the `fe80:` local address any more. Now, enjoy your IPv6 life!
 
