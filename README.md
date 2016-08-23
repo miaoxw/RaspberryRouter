@@ -22,6 +22,11 @@ I reject the proposal that we should buy a new router. Instead, I want to build 
 
 OpenWRT is a simple solution to turning Raspberry Pi to a wireless router, but that is not my purpose. If we install OpenWRT, VPN server can't be built on the Raspberry Pi at the same time. So, the wireless router still needs to be set up on a more usual Linux distribution, for example, Raspbian.
 ##Memo
+###2016-08-24
+* The Micro SD card in the Raspberry Pi failed. I changed a new card and re-install the OS.
+* 802.11g has indeed bebome a bottleneck of network throughput. A Ralink 5370(supprts 802.11n but still works on 2.4GHz) has been ordered and is now on the way.
+* Some mistakes can only be found when folowing the instruction step by step...
+
 ###2016-03-20
 * We can use IPv6 now with this RaspberryPi Router!
 * Some configurations still need to be written at every power-up.  
