@@ -90,6 +90,19 @@ All properties have clear names and functions. So, I won't explain them.
 
 		sudo chmod 755 /etc/network/if-pre-up.d/iptables
 
+##MAC Filtering
+If it is necessary to allow only specific devices to connect to this wireless network, we can set up a white-list of MAC addresses.
+
+* Edit `/etc/hostapd/hostapd.conf` and add the following contents:
+
+		macaddr_acl=1
+		accept_mac_file=/etc/hostapd/hostapd.accept
+
+* Create `/etc/hostapd/hostapd.accept`, and fill MAC addresses into it with one MAC every line. Samples are:
+
+		00:11:22:33:44:55
+		aa:bb:cc:dd:ee:ff
+
 ##Enable forwarding in Linux kernel
 * Open file `/etc/sysctl.conf`.
 * Uncomment the following text in the file above:
