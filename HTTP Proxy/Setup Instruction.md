@@ -1,22 +1,22 @@
-#Setup Instruction
+# Setup Instruction
 This is an alternative way to have access to databases offered by the Library of Nanjing University. And by the way, with this proxy, there will not be any circumstances that CSS files won't be loaded when I tried to visit GitHub in my laboratory.
 
-##Install `squid`
+## Install `squid`
 **Note:** When installing squid, you may find in apt repos, there are two versions of `squid`, namely, `squid` and `squid3`. The former one is with the version of 2.7. In this instruction, I used `squid`, but `squid3` is also usable.
 
 To install `squid`, run the following command:
 
 	sudo apt-get install squid
 
-##Make some configuraton
+## Make some configuraton
 The configuration file of `squid` is quite complex. In the original configuration file `/etc/squid/squid.conf`, almost all contents are comments, about 3900 lines of comments! Here, I will only introduce some core configuration items to you. The rest are for you to discover.
 
-###Port settings
+### Port settings
 The default service port of `squid` is 3128. If you want to change it to increase security, just change it in the configuration file.
 
 	http_port 3128
 
-###Something about cache and memory usage
+### Something about cache and memory usage
 Our Raspberry Pi has a memory of 1GB. It seems abundant, but with some other services running on it, our proxy can't consume too much memory resource.  
 The following configuration works on this issue.
 
@@ -39,19 +39,19 @@ The total memory usage of `squid` is determined by the following formula:
 	* The second `16` is the number of directories of L1 cache.
 	* The last number `256` is the number of directories of L2 cache.
 
-###ACL
+### ACL
 We can let `squid` offer service for a specific range of IP address. In this instruction, I simply opened this service all around the world.  
 The way to write ACL is similar to that on a physical router.
 
 	http_access allow all
 
-###Something else
+### Something else
 	visible_hostname miaoxw.software.nju.edu.cn
 	cache_mgr mg1632004@software.nju.edu.cn
 
 These messages will appear on the error page if this proxy can't have access to the required HTTP request.
 
-##Let It Run
+## Let It Run
 * Stop the service with the following commamd:
 
 		sudo service squid stop
@@ -62,10 +62,10 @@ These messages will appear on the error page if this proxy can't have access to 
 
 		sudo service squid start
 
-##Setting up DDNS
+## Setting up DDNS
 Now, our proxy can be accessed in the campus network. However, it is useless since in Building Fei Yiming, it is still unreachable. Let's apply the DDNS service to our Raspberry Pi. [花生壳](http://hsk.oray.com/) is a widely-used DDNS service.
 
-###Download and install 花生壳
+### Download and install 花生壳
 * On PC, download Oray DDNS from its website, and transfer it to Raspberry Pi with peroper tools such as FileZilla and WinSCP.  
 The following steps assume that the tgz file is located at `/` on Raspberry Pi.
 * Switch to root authorization with the following command:
@@ -77,7 +77,7 @@ The following steps assume that the tgz file is located at `/` on Raspberry Pi.
 * Enter directory `phddns2` and execute `./oraynewph start`.  
 If we see `Oraynewph start success !`, installation is finished.
 
-###Configure Oray DDNS
+### Configure Oray DDNS
 * Run `oraynewph status` in any path, we can get the running state and the SN number.
 * Visit **http://b.oray.com** and log in with the given SN number.
 * Bind your Raspberry Pi with your Oray account.
