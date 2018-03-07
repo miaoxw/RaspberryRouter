@@ -23,6 +23,9 @@ I reject the proposal that we should buy a new router. Instead, I want to build 
 
 OpenWRT is a simple solution to turning Raspberry Pi to a wireless router, but that is not my purpose. If we install OpenWRT, VPN server can't be built on the Raspberry Pi at the same time. So, the wireless router still needs to be set up on a more usual Linux distribution, for example, Raspbian.
 ## Memo
+### 2018-03-07
+* MicroSD cards crash from time to time... This time when I reinstalled Raspbian, I tried to use the `lite` image. It seems that configuration has something different from the past. I'm not sure it is the image of Debian that causes the changes.
+
 ### 2017-09-01
 * I have no idea when Github changed its Markdown interpreter... But I have repaired the Markdown text for the right style.
 
