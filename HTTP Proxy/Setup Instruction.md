@@ -38,6 +38,7 @@ The total memory usage of `squid` is determined by the following formula:
 	* The first number `16` is the greatest size of the directory we set before itself.
 	* The second `16` is the number of directories of L1 cache.
 	* The last number `256` is the number of directories of L2 cache.
+	* In some cases like mine, almost all data are accessed only once and cache is not so necessary. To increase the lifetime of your MicroSD card, you can just ignore this configuration item.
 
 ### ACL
 We can let `squid` offer service for a specific range of IP address. In this instruction, I simply opened this service all around the world.  
@@ -46,7 +47,7 @@ The way to write ACL is similar to that on a physical router.
 	http_access allow all
 
 ### Something else
-	visible_hostname miaoxw.software.nju.edu.cn
+	visible_hostname xiaowei.cat
 	cache_mgr miau.shiauwe@smail.nju.edu.cn
 
 These messages will appear on the error page if this proxy can't have access to the required HTTP request.
